@@ -24,6 +24,7 @@
 
 > #### Update History
 - 2019-03-05
+  - 서블릿 3.1용 web.xml 파일 삭제
   - 서블릿 4.0에 맞게 build.gradle 파일이 수정되었습니다.
   - root-context.xml과 servlet-context.xml에 설정에 도움이 되는 설명이 추가되었습니다.
  
