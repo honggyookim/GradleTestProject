@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--
+		비즈니스 로직을 위한 설정을 하는 곳입니다. - Service, DB, Log, Repository
+		View와 관련된 Bean은 등록하지 않고 Service, Repository 같은 객체의 등록을 합니다. 
+	-->
+	
+		
+</beans>
