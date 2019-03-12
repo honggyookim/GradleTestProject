@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+											http://www.springframework.org/schema/beans/spring-beans.xsd
+											http://www.springframework.org/schema/context 
+											http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!--
 		비즈니스 로직을 위한 설정을 하는 곳입니다. - Service, DB, Log, Repository
 		View와 관련된 Bean은 등록하지 않고 Service, Repository 같은 객체의 등록을 합니다. 
 	-->
+	<context:component-scan base-package="kr.co.ensecure.sample" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
+	<!-- 
+		* ContentNegotiatingViewResolver
+		- 뷰 이름으로부터 직접 뷰 오브젝트를 찾지 않습니다.
+		- 미디어타입(mediaType)의 정보를 통해 다른 적절한 뷰 리졸버를 찾아서 리턴해줍니다.
+		  (뷰 리졸버를 결정해주는 뷰 리졸버?)
+		- 미디어타입은 HTTP의 콘텐트 타입(Content-Type)에 대응됩니다. (xml, json 등)
+		- 이 뷰 리졸버가 적절한 뷰 리졸버를 찾기 위해 request의 contentsType의 mediaType 형태를 파악합니다.
+		  -> 1. URL 확장자에서 찾는 방법
+		     /hello.html -> html 타입, /hello.json -> json 타입
+		  -> 2. 포맷을 지정하는 파라미터에서 찾는 방법
+		     /hello?format=pdf -> pdf 타입
+		  -> 3. HTTP의 콘텐트 교섭에 사용되는 Accept Header의 설정을 이용해서 찾는 방법
+		     위의 두 방법으로 못찾았을 때 사용됩니다.
+		  -> defaultContentType 프로퍼티를 통해 설정된 미디어 타입을 사용합니다.         
+		- 뷰 리졸버는 ViewResolvers 프로퍼티에 정의합니다.
+		  -> defaultViews 프로퍼티를 이용해 기본 뷰를 등록해줘야 합니다.
+		     안 하면 Servlet Context에 등록된 ViewResolver 타입의 빈을 모두 찾아서 사용하게 됨
+		- order 우선순위를 따르지 않고 모든 뷰 리졸버들 중 해당 요청을 처리할 수 있는 타입을 찾아서
+		  반환할 뷰를 결정합니다.       
+	 -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	  <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+	  <property name="viewResolvers">
+	    <list>
+	      <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	        <property name="prefix" value="/WEB-INF/jsp/"/>
+	        <property name="suffix" value=".jsp"/>
+	      </bean>
+	    </list>
+	  </property>
+	  <!-- 
+	  	위의 viewResolvers가 View를 얻지 못할 경우에는 defaultView를 사용합니다.
+	  	MappingJackson2JsonView는 ModelAndView를 json 형식으로 바꿔서 뷰 대신 리턴해줍니다. 
+	  -->
+	  <property name="defaultViews">
+	    <list>
+	      <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	    </list>
+	  </property>
+	</bean>
 		
 </beans>
