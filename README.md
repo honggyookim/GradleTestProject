@@ -25,7 +25,7 @@
 > #### Update History
 - 2019-03-12
   - component-scan을 통해 빈을 검색할 때 검색할 빈을 root-context와 servlet-context에 분리시켰습니다.
-  - Rest 요청이 아닌 일반 비동기 요청을 할 때 필요한 ViewResolver 설정이 추가되었습니다. (주석 포함)
+  - Rest 요청이 아닌 일반 비동기 요청을 할 때 필요한 ViewResolver 설정이 추가되었습니다. (주석 포함) <br/>
     이에 따라 필요한 설정을 build.gradle에 추가하였습니다. (jackson)
   
 - 2019-03-05
