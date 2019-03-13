@@ -1,4 +1,4 @@
-# Sample Gradle Web Project for SpringMVC
+## Sample Gradle Web Project for SpringMVC
 
 ###### 오류 및 문의사항은 Issues 또는 다이렉트로 전달 주세요.
 > #### build.gradle 설정 시 참고 사항
@@ -8,11 +8,11 @@
   해당 샘플 프로젝트에서는 서블릿 버전을 4.0, 자바 버전을 1.8로 설정하였습니다.
 - dependencies 블록의 의존 모듈은 compile로 정의하는 것이 좋습니다.<br/>
   gradle이 업데이트되면서 compile을 deprecated시키고 실제 안드로이드 스튜디오에서는 implementation을<br/>
-  기본 명령어로 사용하고 있지만 웹 프로젝트에서는 compile을 사용하는 것이 좋습니다.
+  기본 명령어로 사용하고 있지만 웹 프로젝트에서는 compile을 사용해야 합니다.
 - implementation은 라이브러리의 외부 노출을 허용하지 않고 캡슐화 시켜버립니다. 반면에 compile은 외부에서<br/>
   해당 모듈의 접근을 허용합니다. implementation으로 의존 모듈을 선언하게 되면 외부에서 모듈 접근 허용이 
   불가능하기 때문에 로컬 서버에서 테스트를 할 때 톰캣에서 해당 모듈을 찾을 수 없어 예외가 발생하게 됩니다.<br/>
-  따라서 의존 모듈은 일반적으로는 compile로 정의하도록 권장합니다.
+  따라서 의존 모듈은 일반적으로는 compile로 선언합니다.
 
 <br/>
 
@@ -25,8 +25,8 @@
 > #### Update History
 - 2019-03-12
   - component-scan을 통해 빈을 검색할 때 검색할 빈을 root-context와 servlet-context에 분리시켰습니다.
-  - Rest 요청이 아닌 일반 비동기 요청을 할 때 필요한 ViewResolver 설정이 추가되었습니다. (주석 포함) <br/>
-    이에 따라 필요한 설정을 build.gradle에 추가하였습니다. (jackson)
+  - RESTful 요청이 아닌 일반 비동기 요청을 할 때 필요한 ViewResolver 설정이 추가되었습니다. (주석 포함) <br/>
+    이에 따라 필요한 설정을 build.gradle에 추가하였습니다. (jackson-databind)
   
 - 2019-03-05
   - 서블릿 3.1용 web.xml 파일 삭제
