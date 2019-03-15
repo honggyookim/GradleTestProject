@@ -36,25 +36,42 @@
 		  반환할 뷰를 결정합니다.       
 	 -->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-	  <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
-	  <property name="viewResolvers">
-	    <list>
-	      <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
-	      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	        <property name="prefix" value="/WEB-INF/jsp/"/>
-	        <property name="suffix" value=".jsp"/>
-	      </bean>
-	    </list>
-	  </property>
-	  <!-- 
-	  	위의 viewResolvers가 View를 얻지 못할 경우에는 defaultView를 사용합니다.
-	  	MappingJackson2JsonView는 ModelAndView를 json 형식으로 바꿔서 뷰 대신 리턴해줍니다. 
-	  -->
-	  <property name="defaultViews">
-	    <list>
-	      <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-	    </list>
-	  </property>
+		<property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+		<property name="viewResolvers">
+	  	<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/jsp/"/>
+					<property name="suffix" value=".jsp"/>
+				</bean>
+			</list>
+		</property>
+		<!-- 
+			위의 viewResolvers가 View를 얻지 못할 경우에는 defaultView를 사용합니다.
+			MappingJackson2JsonView는 ModelAndView를 json 형식으로 바꿔서 뷰 대신 리턴해줍니다. 
+		-->
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+	
+	<!--
+		ContentNegotiatingViewResolver 내 mediaType 프로퍼티를 더이상 사용할 수 없으므로(3.2.x부터)
+		아래의 contentNegotiationManager로 대신합니다.	 
+	-->
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="true" />
+		<property name="mediaTypes" >
+			<value>
+				json=application/json
+				xml=application/xml
+				html=text/html
+				atom=application/atom+xml
+			</value>
+		</property>
 	</bean>
 		
 </beans>
