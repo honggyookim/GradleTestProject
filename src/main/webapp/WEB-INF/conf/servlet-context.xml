@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
-											http://www.springframework.org/schema/mvc/spring-mvc.xsd
-											http://www.springframework.org/schema/beans 
-											http://www.springframework.org/schema/beans/spring-beans.xsd
-											http://www.springframework.org/schema/context 
-											http://www.springframework.org/schema/context/spring-context.xsd">
+<beans:beans
+  xmlns="http://www.springframework.org/schema/mvc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+                      http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                      http://www.springframework.org/schema/beans 
+                      http://www.springframework.org/schema/beans/spring-beans.xsd
+                      http://www.springframework.org/schema/context 
+                      http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- 
-		DispatcherServlet과 관련된 설정을 합니다.
-		Web Application에서 클라이언트의 요청을 받기 위한 설정을 주로 하는 곳으로
-		View와 관련된 Bean(Controller)을 등록하거나 MulitipartResolver와 같은 설정을 합니다.
-		만약 여기에서 Bean을 찾을 수 없으면 해당 역할을 root-context로 위임하게 됩니다.
-	-->
-	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-	<!-- default-servlet-handler를 사용할 경우 resources를 대체할 수 있습니다. -->
-	<default-servlet-handler />
-	
-	<context:component-scan base-package="kr.co.ensecure.sample">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-	</context:component-scan>
-	
+  <!-- DispatcherServlet과 관련된 설정을 합니다. Web Application에서 클라이언트의 요청을 받기 위한 
+    설정을 주로 하는 곳으로 View와 관련된 Bean(Controller)을 등록하거나 MulitipartResolver와 같은 설정을 
+    합니다. 만약 여기에서 Bean을 찾을 수 없으면 해당 역할을 root-context로 위임하게 됩니다. -->
+
+  <!-- Enables the Spring MVC @Controller programming model -->
+  <annotation-driven />
+  <!-- default-servlet-handler를 사용할 경우 resources를 대체할 수 있습니다. -->
+  <default-servlet-handler />
+
+  <context:component-scan base-package="kr.co.ensecure.sample">
+    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+  </context:component-scan>
+
 </beans:beans>
