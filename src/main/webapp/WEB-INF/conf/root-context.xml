@@ -38,7 +38,7 @@
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="contentNegotiationManager" ref="contentNegotiationManager"/>
 		<property name="viewResolvers">
-	  	<list>
+			<list>
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="prefix" value="/WEB-INF/jsp/"/>
@@ -49,6 +49,7 @@
 		<!-- 
 			위의 viewResolvers가 View를 얻지 못할 경우에는 defaultView를 사용합니다.
 			MappingJackson2JsonView는 ModelAndView를 json 형식으로 바꿔서 뷰 대신 리턴해줍니다. 
+			만약 xml을 추가해서 사용할 거면 ...view.xml.MarshallingView 를 사용하시면 됩니다.
 		-->
 		<property name="defaultViews">
 			<list>
