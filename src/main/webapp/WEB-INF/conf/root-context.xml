@@ -59,7 +59,8 @@
 	
 	<!--
 		ContentNegotiatingViewResolver 내 mediaType 프로퍼티를 더이상 사용할 수 없으므로(3.2.x부터)
-		아래의 contentNegotiationManager로 대신합니다.	 
+		아래의 contentNegotiationManager로 대신합니다. 
+		샘플 프로젝트의 경우 외부로 뺐으나 위의 contentNegotiationManager 태그에 종속시켜도 무관합니다.
 	-->
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="favorPathExtension" value="false" />
